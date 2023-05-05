@@ -1,0 +1,1 @@
+key = 'pk.eyJ1IjoiamZlbmduZ3MiLCJhIjoiY2wxMHgyOGQ3Mm9sdTNwcG5vY2x0b3ozZSJ9.oiMwvkya1gT3XoizrkySyw'
