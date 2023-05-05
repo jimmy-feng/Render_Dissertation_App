@@ -23,7 +23,7 @@ mapbox_accesstoken = config_mapbox.key
 # Load and preprocess data:
 
 # Grocery Stores scraped from Google Maps
-stores = pd.read_csv('./Data/All_Food_Stores_Features.csv', index_col=0)
+stores = pd.read_csv('../Data/All_Food_Stores_Features.csv', index_col=0)
 # Only keep important columns for display
 stores.rename(columns = {
     'Descript': 'Description',
@@ -91,12 +91,12 @@ def get_online_stores(df):
 stores_online = get_online_stores(stores)
 
 # Travel times between stops in people's trajectories and stores
-od = pd.read_csv('./Data/OD_v2.csv', index_col=0)
+od = pd.read_csv('../Data/OD_v2.csv', index_col=0)
 od['free_time_start'] = pd.to_datetime(od['free_time_start'])#.dt.tz_localize('US/Eastern')
 od['free_time_end'] = pd.to_datetime(od['free_time_end'])#.dt.tz_localize('US/Eastern')
 
 # Individuals' information
-individuals = pd.read_csv('./Data/People_Synthetic_Data.csv')
+individuals = pd.read_csv('../Data/People_Synthetic_Data.csv')
 individuals.description = individuals.description.str.wrap(30)
 individuals.description = individuals.description.apply(lambda x: x.replace('\n', '<br>'))
 # Assume all virtual locations are available to a person from the start
@@ -131,7 +131,7 @@ individuals['VirtualOpp'] = individuals['VirtualOpp'].replace(np.nan, 0)
 #traj_simple = pd.read_csv('./Data/Scenarios_Synthetic_Data.csv')
 
 # Main and travel trajectory stops (inclusive of every street)
-traj = pd.read_csv('./Data/Scenarios_Synthetic_Data_Trajectories.csv', index_col=0)
+traj = pd.read_csv('../Data/Scenarios_Synthetic_Data_Trajectories.csv', index_col=0)
 traj.drop(columns=['time'], inplace=True)
 traj['person_id'] = traj['person_id'].astype(int)
 
@@ -174,7 +174,7 @@ trajectories = pd.merge(trajectories, individuals, left_on='person_id', right_on
 # Retrieve all points in the polygon of Knox County
 
 # Load County Boundary GeoJSON
-with open('./Data/Local_Counties_v2.geojson') as f:
+with open('../Data/Local_Counties_v2.geojson') as f:
     knox = json.load(f)
 
 pts = []
@@ -191,7 +191,7 @@ knox_Z = []
 # Psuedo z-column
 knox_Z += len(knox_X) * [dt(2022, 3, 10, 23, 59, 59)]
 
-knox_bg = gpd.read_file('./Data/Knox_County_BG_Census.shp')
+knox_bg = gpd.read_file('../Data/Knox_County_BG_Census.shp')
 
 # Scale percentage values between 0 - 100
 knox_bg_columns=['Unemply',
@@ -239,7 +239,7 @@ knox_bg.rename(columns={'TotlPpE': 'Population',
 
 # Retrieve columns of Census data that users can select to visualize in a choropleth map
 # Also add space-time prisms to 2-D Map
-prisms = gpd.read_file('./Data/Scenario_Flexible_Space_Time_Prisms.shp', index_col=0)
+prisms = gpd.read_file('../Data/Scenario_Flexible_Space_Time_Prisms.shp', index_col=0)
 prisms['free_time_start'] = pd.to_datetime(prisms['free_time_'])
 prisms['free_time_end'] = pd.to_datetime(prisms['free_tim_1'])
 
@@ -252,7 +252,7 @@ knox_bg_cols.append('Space Time Prisms')
 
 
 # Description and GitHub Code
-with open("./Code/metadata.md", "r") as f:
+with open("../Code/metadata.md", "r") as f:
     md = f.read()
 
 modal_overlay = dbc.Modal(
