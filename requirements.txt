@@ -25,7 +25,7 @@ plotly==5.6.0
 pygeos==3.7.2
 python-dateutil==2.8.0
 pytz==2021.1
-shapely==1.7.1
+shapely==2.0.0
 six==1.15.0
 tenacity==6.3.1
 werkzeug==1.0.1
